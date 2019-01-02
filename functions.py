@@ -15,15 +15,15 @@ def softmax(x):
     return x
 
 
-def cross_entropy_error(d, y):
+def cross_entropy_error(y, t):
     ''' クロスエントロピー関数 '''
     if y.ndim == 1:
-        d = d.reshape(1, d.size)
+        t = t.reshape(1, t.size)
         y = y.reshape(1, y.size)
 
     # 教師データがone-hot-vectorの場合、正解ラベルのインデックスに変換
-    if d.size == y.size:
-        d = d.argmax(axis=1)
+    if t.size == y.size:
+        t = t.argmax(axis=1)
 
     batch_size = y.shape[0]
-    return -np.sum(np.log(y[np.arange(batch_size), d] + 1e-7)) / batch_size
+    return -np.sum(np.log(y[np.arange(batch_size), t] + 1e-7)) / batch_size
