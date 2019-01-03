@@ -23,6 +23,7 @@ class Relu:
 
 
 class Sigmoid:
+    ''' Sigmoid関数 '''
 
     def __init__(self):
         self.params, self.grads = [], []
@@ -65,7 +66,7 @@ class Affine:
 
 
 class SoftmaxWithLoss:
-    ''' ソフトマックス with クロスエントロピー誤差 '''
+    ''' Softmax with 交差エントロピー誤差 '''
 
     def __init__(self):
         # softmaxの出力

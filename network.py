@@ -9,9 +9,9 @@ class OriginalNet:
         I, H, O = input_size, hidden_size, output_size
 
         # 重みとバイアスの初期化
-        W1 = 0.01 * np.random.randn(I, H)
+        W1 = np.random.randn(I, H) / np.sqrt(H)
         b1 = np.zeros(H)
-        W2 = 0.01 * np.random.randn(H, O)
+        W2 = np.random.randn(H, O) / np.sqrt(2.0 / H)
         b2 = np.zeros(O)
 
         # ネットワーク層追加
@@ -19,6 +19,7 @@ class OriginalNet:
             Affine(W1, b1),
             Relu(),
             Affine(W2, b2),
+            Dropout(0.1),
             Sigmoid()
         ]
 
