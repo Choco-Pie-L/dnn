@@ -1,6 +1,6 @@
 # coding: utf-8
 import numpy as np
-from functions import softmax, cross_entropy_error
+from functions import sigmoid, softmax, cross_entropy_error
 
 
 class Relu:
@@ -19,6 +19,23 @@ class Relu:
     def backward(self, dout):
         dout[self.mask] = 0
         dx = dout
+        return dx
+
+
+class Sigmoid:
+
+    def __init__(self):
+        self.params, self.grads = [], []
+        self.out = None
+
+    def forward(self, x):
+        out = sigmoid(x)
+        self.out = out
+        return out
+
+    def backward(self, dout):
+        dx = dout * (1.0 - self.out) * self.out
+
         return dx
 
 

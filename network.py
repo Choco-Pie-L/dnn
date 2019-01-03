@@ -1,6 +1,6 @@
 # coding: utf-8
 import numpy as np
-from layers import Affine, Relu, Dropout, SoftmaxWithLoss
+from layers import Affine, Relu, Dropout, SoftmaxWithLoss, Sigmoid
 
 
 class OriginalNet:
@@ -9,18 +9,17 @@ class OriginalNet:
         I, H, O = input_size, hidden_size, output_size
 
         # 重みとバイアスの初期化
-        W1 = np.random.randn(I, H)
-        b1 = np.random.randn(H)
-        W2 = np.random.randn(H, O)
-        b2 = np.random.randn(O)
+        W1 = 0.01 * np.random.randn(I, H)
+        b1 = np.zeros(H)
+        W2 = 0.01 * np.random.randn(H, O)
+        b2 = np.zeros(O)
 
         # ネットワーク層追加
         self.layers = [
             Affine(W1, b1),
             Relu(),
             Affine(W2, b2),
-            Relu(),
-            Dropout(0.1)
+            Sigmoid()
         ]
 
         # 損失関数

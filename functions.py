@@ -2,6 +2,11 @@
 import numpy as np
 
 
+def sigmoid(x):
+    '''シグモイド関数 '''
+    return 1 / (1 + np.exp(-x))
+
+
 def softmax(x):
     ''' ソフトマックス関数 '''
     if x.ndim == 2:
