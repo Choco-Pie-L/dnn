@@ -9,18 +9,16 @@ class OriginalNet:
         I, H, O = input_size, hidden_size, output_size
 
         # 重みとバイアスの初期化
-        W1 = np.random.randn(I, H) / np.sqrt(H)
+        W1 = np.random.randn(I, H) /  np.sqrt(2.0 / H)
         b1 = np.zeros(H)
-        W2 = np.random.randn(H, O) / np.sqrt(2.0 / H)
+        W2 = np.random.randn(H, O) / np.sqrt(H)
         b2 = np.zeros(O)
 
-        # ネットワーク層追加
+        # ネットワーク層
         self.layers = [
             Affine(W1, b1),
             Relu(),
-            Affine(W2, b2),
-            Dropout(0.1),
-            Sigmoid()
+            Affine(W2, b2)
         ]
 
         # 損失関数
